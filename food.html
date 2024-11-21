@@ -1,0 +1,500 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Food Delivery Service
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .restaurant-list {
+            margin-top: 20px;
+        }
+        .restaurant {
+            margin-bottom: 20px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .menu-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .order-summary {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            z-index: 1000;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .order-summary h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .order-item-title {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .order-item-price {
+            font-size: 0.875rem;
+            color: #555;
+        }
+        .order-total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .order-form {
+            margin-top: 20px;
+        }
+        .order-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+        }
+        .place-order {
+            background-color: #FF4C4C;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .place-order:hover {
+            background-color: #e04343;
+        }
+        .add-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .add-button:hover {
+            background-color: #45a049;
+        }
+        .quantity-button {
+            background-color: #FF4C4C;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .quantity-button:hover {
+            background-color: #e04343;
+        }
+        .remove-button {
+            background-color: #FF4C4C;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .remove-button:hover {
+            background-color: #e04343;
+        }
+        .clear-cart {
+            background-color: #FF4C4C;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .clear-cart:hover {
+            background-color: #e04343;
+        }
+        .view-cart {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .view-cart:hover {
+            background-color: #45a049;
+        }
+        .apply-coupon {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .apply-coupon:hover {
+            background-color: #45a049;
+        }
+        .schedule-order {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .schedule-order:hover {
+            background-color: #45a049;
+        }
+        .track-order {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .track-order:hover {
+            background-color: #45a049;
+        }
+        .save-for-later {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .save-for-later:hover {
+            background-color: #45a049;
+        }
+        .favorite-restaurant {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .favorite-restaurant:hover {
+            background-color: #45a049;
+        }
+        .reorder {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .reorder:hover {
+            background-color: #45a049;
+        }
+        .filter-search {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .filter-search:hover {
+            background-color: #45a049;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <main class="container mx-auto p-4">
+   <h1 class="text-4xl font-bold text-center mb-8">
+    Food Delivery Service
+   </h1>
+   <section class="restaurant-list">
+    <div class="restaurant bg-white p-4 rounded-lg shadow-md">
+     <h2 class="text-2xl font-bold mb-4">
+      Foodys
+     </h2>
+     <div class="menu-item">
+      <div class="flex items-center">
+       <img alt="Chicken Special Masala - A delicious blend of spices and tender chicken, cooked to perfection" height="50" src="https://storage.googleapis.com/a1aa/image/NzFZrhGNeA3XLCibwqamNfTbpGI74yPvPyG6hFJijiE0OednA.jpg" width="50"/>
+       <span>
+        Chicken Special Masala - ₹129.99
+       </span>
+      </div>
+      <button class="add-button" onclick="addItem('Chicken Special Masala', 129.99)">
+       Add
+      </button>
+     </div>
+     <div class="menu-item">
+      <div class="flex items-center">
+       <img alt="Paneer Butter Masala - Soft paneer cubes in a rich and creamy tomato-based gravy" height="50" src="https://storage.googleapis.com/a1aa/image/sLtmF4tLLvL5M5gKg1OAm3hB3IV863ZnIifBITxNPqUYHfuTA.jpg" width="50"/>
+       <span>
+        Paneer Butter Masala - ₹109.99
+       </span>
+      </div>
+      <button class="add-button" onclick="addItem('Paneer Butter Masala', 109.99)">
+       Add
+      </button>
+     </div>
+     <div class="menu-item">
+      <div class="flex items-center">
+       <img alt="Dal Makhani - A creamy and buttery lentil dish, slow-cooked to perfection" height="50" src="https://storage.googleapis.com/a1aa/image/bTTeJQsAIRVmBqNsRMcVmcM7E79zOgfIGnrzL7Htc95xOednA.jpg" width="50"/>
+       <span>
+        Dal Makhani - ₹89.99
+       </span>
+      </div>
+      <button class="add-button" onclick="addItem('Dal Makhani', 89.99)">
+       Add
+      </button>
+     </div>
+     <div class="menu-item">
+      <div class="flex items-center">
+       <img alt="Butter Chicken - Tender chicken pieces in a rich and creamy tomato sauce" height="50" src="https://storage.googleapis.com/a1aa/image/qephBUBI1ATccSgY8kCzEYVVwDyhF2creEe2xyke5diO747OB.jpg" width="50"/>
+       <span>
+        Butter Chicken - ₹139.99
+       </span>
+      </div>
+      <button class="add-button" onclick="addItem('Butter Chicken', 139.99)">
+       Add
+      </button>
+     </div>
+     <div class="menu-item">
+      <div class="flex items-center">
+       <img alt="Chole Bhature - Spicy chickpeas served with fluffy deep-fried bread" height="50" src="https://storage.googleapis.com/a1aa/image/TYN1OX2A3xJlMVMdSeYsNgDHskfyrCLQ6QLNKvxiQcH2OednA.jpg" width="50"/>
+       <span>
+        Chole Bhature - ₹99.99
+       </span>
+      </div>
+      <button class="add-button" onclick="addItem('Chole Bhature', 99.99)">
+       Add
+      </button>
+     </div>
+    </div>
+   </section>
+   <section class="order-form bg-white p-4 rounded-lg shadow-md mt-8">
+    <h2 class="text-2xl font-bold">
+     Order Form
+    </h2>
+    <input id="customer-name" placeholder="Your Name" type="text"/>
+    <input id="customer-address" placeholder="Your Address" type="text"/>
+    <button class="place-order mt-4" onclick="placeOrder()">
+     Place Order
+    </button>
+   </section>
+   <div class="order-summary hidden" id="order-summary">
+    <h3>
+     Order Summary
+    </h3>
+    <div id="order-items">
+    </div>
+    <div class="order-total" id="order-total">
+     Total: ₹0.00
+    </div>
+    <button class="clear-cart mt-4" onclick="clearCart()">
+     Clear Cart
+    </button>
+   </div>
+   <button class="view-cart mt-4" onclick="toggleCart()">
+    View Cart
+   </button>
+   <button class="apply-coupon mt-4" onclick="applyCoupon()">
+    Apply Coupon
+   </button>
+   <button class="schedule-order mt-4" onclick="scheduleOrder()">
+    Schedule Order
+   </button>
+   <button class="track-order mt-4" onclick="trackOrder()">
+    Track Order
+   </button>
+   <button class="save-for-later mt-4" onclick="saveForLater()">
+    Save for Later
+   </button>
+   <button class="favorite-restaurant mt-4" onclick="favoriteRestaurant()">
+    Favorite Restaurant
+   </button>
+   <button class="reorder mt-4" onclick="reorder()">
+    Reorder
+   </button>
+   <button class="filter-search mt-4" onclick="filterSearch()">
+    Filter/Search
+   </button>
+  </main>
+  <script>
+   let order = [];
+    let savedItems = [];
+    let favoriteRestaurants = [];
+    let currentOrderStatus = "Preparing";
+
+    function addItem(name, price) {
+        const existingItem = order.find(item => item.name === name);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            order.push({ name, price, quantity: 1 });
+        }
+        updateOrderSummary();
+    }
+
+    function updateOrderSummary() {
+        const orderItems = document.getElementById('order-items');
+        orderItems.innerHTML = '';
+        let total = 0;
+        order.forEach((item, index) => {
+            total += item.price * item.quantity;
+            const orderItem = document.createElement('div');
+            orderItem.className = 'order-item';
+            orderItem.innerHTML = `
+                <div class="order-item-title">${item.name} x${item.quantity}</div>
+                <div class="order-item-price">₹${(item.price * item.quantity).toFixed(2)}</div>
+                <div>
+                    <button class="quantity-button" onclick="incrementQuantity(${index})">+</button>
+                    <button class="quantity-button" onclick="decrementQuantity(${index})">-</button>
+                    <button class="remove-button" onclick="removeItem(${index})">Remove</button>
+                </div>
+            `;
+            orderItems.appendChild(orderItem);
+        });
+        document.getElementById('order-total').innerText = `Total: ₹${total.toFixed(2)}`;
+    }
+
+    function incrementQuantity(index) {
+        order[index].quantity += 1;
+        updateOrderSummary();
+    }
+
+    function decrementQuantity(index) {
+        if (order[index].quantity > 1) {
+            order[index].quantity -= 1;
+        } else {
+            order.splice(index, 1);
+        }
+        updateOrderSummary();
+    }
+
+    function removeItem(index) {
+        if (confirm('Are you sure you want to remove this item?')) {
+            order.splice(index, 1);
+            updateOrderSummary();
+        }
+    }
+
+    function clearCart() {
+        if (confirm('Are you sure you want to clear the cart?')) {
+            order = [];
+            updateOrderSummary();
+            alert('Cart has been cleared.');
+        }
+    }
+
+    function toggleCart() {
+        const orderSummary = document.getElementById('order-summary');
+        orderSummary.classList.toggle('hidden');
+    }
+
+    function applyCoupon() {
+        const couponCode = prompt('Enter your coupon code:');
+        if (couponCode === 'DISCOUNT10') {
+            alert('Coupon applied! You get a 10% discount.');
+            // Apply discount logic here
+        } else {
+            alert('Invalid coupon code.');
+        }
+    }
+
+    function scheduleOrder() {
+        const date = prompt('Enter the delivery date (YYYY-MM-DD):');
+        const time = prompt('Enter the delivery time (HH:MM):');
+        alert(`Order scheduled for ${date} at ${time}.`);
+    }
+
+    function trackOrder() {
+        alert(`Your order status is: ${currentOrderStatus}`);
+    }
+
+    function saveForLater() {
+        const itemName = prompt('Enter the name of the item to save for later:');
+        const item = order.find(item => item.name === itemName);
+        if (item) {
+            savedItems.push(item);
+            order = order.filter(item => item.name !== itemName);
+            updateOrderSummary();
+            alert('Item saved for later.');
+        } else {
+            alert('Item not found in the cart.');
+        }
+    }
+
+    function favoriteRestaurant() {
+        const restaurantName = prompt('Enter the name of the restaurant to favorite:');
+        if (!favoriteRestaurants.includes(restaurantName)) {
+            favoriteRestaurants.push(restaurantName);
+            alert('Restaurant added to favorites.');
+        } else {
+            alert('Restaurant is already in favorites.');
+        }
+    }
+
+    function reorder() {
+        const previousOrder = prompt('Enter the name of the previous order to reorder:');
+        // Simulate fetching previous order details
+        const previousOrderDetails = [
+            { name: 'Chicken Special Masala', price: 129.99, quantity: 2 },
+            { name: 'Paneer Butter Masala', price: 109.99, quantity: 1 }
+        ];
+        order = previousOrderDetails;
+        updateOrderSummary();
+        alert('Reordered successfully.');
+    }
+
+    function filterSearch() {
+        const query = prompt('Enter your search query:');
+        alert(`Searching for ${query}...`);
+    }
+
+    async function placeOrder() {
+        const name = document.getElementById('customer-name').value;
+        const address = document.getElementById('customer-address').value;
+    
+        if (!name || !address) {
+            alert('Please fill out your name and address.');
+            return;
+        }
+    
+        const orderDetails = {
+            customerName: name,
+            customerAddress: address,
+            items: order,
+            orderTime: new Date().toLocaleString(),
+            estimatedDeliveryTime: new Date(new Date().getTime() + 30 * 60000).toLocaleString()
+        };
+    
+        try {
+            const response = await fetch('http://localhost:5000/api/order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderDetails)
+            });
+            if (response.ok) {
+                alert('Order placed successfully!');
+                order = [];
+                updateOrderSummary();  // Clear the order summary after successful placement
+            } else {
+                alert('Failed to place order');
+            }
+        } catch (error) {
+            console.error('Error placing order:', error);
+            alert('Error placing order');
+        }
+    }
+    
+  </script>
+ </body>
+</html>

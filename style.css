@@ -1,0 +1,248 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #FF5722;
+}
+
+/* Hover underline effect */
+nav ul li a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: #FF5722;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Logo Text */
+.logo-text {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 36px;
+  color: #FF5722;
+}
+
+/* Toggle Mode Button */
+.toggle-mode {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 50px;
+  transition: all 0.3s ease;
+}
+
+.toggle-mode:hover {
+  background-color: #555;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+body.dark-mode .toggle-mode {
+  background-color: #FF5722;
+  color: white;
+}
+
+body.dark-mode .main-section h1 span {
+  color: #FF5722;
+}
+
+body.dark-mode .stat-item {
+  color: white;
+}
+
+/* Light Mode Styles */
+body.light-mode {
+  background-color: #ffffff;
+  color: #333;
+}
+
+body.light-mode nav ul li a {
+  color: #333;
+}
+
+body.light-mode .toggle-mode {
+  background-color: #FFA726;
+  color: white;
+}
+
+body.light-mode .main-section h1 span {
+  color: #FFA726;
+}
+
+body.light-mode .stat-item {
+  color: #333;
+}
+
+/* Main Section */
+.main-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  transition: all 0.3s ease;
+}
+
+.content h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.content h1 span {
+  color: #FF5722;
+}
+
+.content p {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.quote {
+  font-style: italic;
+  color: #888;
+}
+
+.order-now, .see-menu {
+  padding: 10px 20px;
+  margin-right: 30px; /* Increased margin for spacing */
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.order-now {
+  background-color: #FF5722;
+  color: white;
+}
+
+.see-menu {
+  background-color: #333333;
+  color: white;
+}
+
+.order-now:hover, .see-menu:hover {
+  transform: scale(1.05); /* Tempting hover effect */
+  box-shadow: 0 8px 15px rgba(255, 87, 34, 0.4);
+}
+
+/* Statistics Section */
+.statistics {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.stat-item {
+  padding: 15px 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#restaurants {
+  background-color: #a8e6cf; /* Light pastel green */
+}
+
+#customers {
+  background-color: #d1c4e9; /* Light pastel blue */
+}
+
+/* Social Media Icons */
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  margin-right: 15px;
+  font-size: 24px;
+  color: white;
+}
+
+.social-icons a:hover {
+  color: #FF5722;
+}
+
+/* Chicken Image Styling */
+.chicken-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.sauce-splash img {
+  position: absolute;
+  top: -30px;
+  left: -50px;
+  width: 500px;
+  z-index: 1;
+}
+
+.delicious-food img {
+  position: relative;
+  z-index: 2;
+}
+
+.chili-tomato {
+  position: absolute;
+  top: -8%; /* Adjusted for better placement */
+  right: -440px; /* Positioned to the right of the chicken */
+  width: 100px;
+  z-index: 3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.main-section {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+nav ul li a {
+  animation: fadeIn 1s ease-in-out;
+}
